@@ -109,19 +109,20 @@ function total_cxp()
 
 function total_visitas()
 {
-     $id_moneda    = get_row('perfil', 'moneda', 'id_perfil', 1);
+    /* $id_moneda    = get_row('perfil', 'moneda', 'id_perfil', 1);
     $fecha_actual = date('Y-m-d');
     global $conexion;
     //---------------------------------------------------------------------------------------
     $abonoSql    = "SELECT count(id) as total FROM registros_visitas where date(fecha_hora) = '$fecha_actual'";
     //echo $abonoSql; 
     $abonoQuery  = $conexion->query($abonoSql);
+    var_dump($abonoSql);die;
     $total_abono = 0;
     while ($abonoResult = $abonoQuery->fetch_assoc()) {
         $total_abono += $abonoResult['total'];
     }
 
-    echo '' . '' . $total_abono . '';
+    echo '' . '' . $total_abono . '';*/
 }
 
 function total_pedidos()
@@ -237,7 +238,7 @@ function latest_order()
 
 function visitas()
 {
-    global $conexion;
+    /*global $conexion;
     $id_moneda = get_row('perfil', 'moneda', 'id_perfil', 1);
 
     $sql="select count(id) valor, pagina, fecha_hora from registros_visitas where pagina <> 'PRODUCTO' group by pagina UNION
@@ -266,7 +267,7 @@ order by valor desc";
         </tr>
         <?php
 
-    }
+    }*/
 }
 
 function ultimos_pedidos()
@@ -590,7 +591,7 @@ function generax($id){
         </factura>';
     
     //$file = fopen("C:/xampp/htdocs/punto_venta/vistas/xml/comprobantes/factura_" . $id_factura . ".xml", "w+");
-    $file = fopen($_SERVER['DOCUMENT_ROOT']."/sysadmin/vistas/xml/comprobantes/factura_" . $id_factura . ".xml", "w+");
+    $file = fopen($_SERVER['DOCUMENT_ROOT']."/imporsuitv01/sysadmin/vistas/xml/comprobantes/factura_" . $id_factura . ".xml", "w+");
     fwrite($file, $xml.$xml_detalles);
 }
 
@@ -730,7 +731,7 @@ function generaxmlliquidacion($id){
         </liquidacionCompra>';
     
     //$file = fopen("C:/xampp/htdocs/punto_venta/vistas/xml/comprobantes/LC_" . $id_liquidacion . ".xml", "w+");
-    $file = fopen($_SERVER['DOCUMENT_ROOT']."/sysadmin/vistas/xml/comprobantes/LC_" . $id_liquidacion . ".xml", "w+");
+    $file = fopen($_SERVER['DOCUMENT_ROOT']."/imporsuitv01/sysadmin/vistas/xml/comprobantes/LC_" . $id_liquidacion . ".xml", "w+");
     fwrite($file, $xml.$xml_detalles);
 }
 
@@ -874,7 +875,7 @@ function generaxmlcredito($id){
     
     
     //$file = fopen("C:/xampp/htdocs/punto_venta/vistas/xml/comprobantes/NC_" . $id_credito . ".xml", "w+");
-    $file = fopen($_SERVER['DOCUMENT_ROOT']."/sysamin/vistas/xml/comprobantes/NC_" . $id_credito . ".xml", "w+");
+    $file = fopen($_SERVER['DOCUMENT_ROOT']."/imporsuitv01/sysamin/vistas/xml/comprobantes/NC_" . $id_credito . ".xml", "w+");
     fwrite($file, $xml.$xml_detalles);
 }
 
@@ -1015,7 +1016,7 @@ function generaxmldebito($id){
         
         
     //$file = fopen("C:/xampp/htdocs/punto_venta/vistas/xml/comprobantes/ND_" . $id_debito . ".xml", "w+");
-    $file = fopen($_SERVER['DOCUMENT_ROOT']."/sysadmin/vistas/xml/comprobantes/ND_" . $id_debito . ".xml", "w+");
+    $file = fopen($_SERVER['DOCUMENT_ROOT']."/imporsuitv01/sysadmin/vistas/xml/comprobantes/ND_" . $id_debito . ".xml", "w+");
     fwrite($file, $xml);
 }
 
@@ -1170,7 +1171,7 @@ function generaxmlguia($id){
     </guiaRemision>';
     
     //$file = fopen("C:/xampp/htdocs/punto_venta/vistas/xml/comprobantes/LC_" . $id_liquidacion . ".xml", "w+");
-    $file = fopen($_SERVER['DOCUMENT_ROOT']."/sysadmin/vistas/xml/comprobantes/GR_" . $id_guia . ".xml", "w+");
+    $file = fopen($_SERVER['DOCUMENT_ROOT']."/imporsuitv01/sysadmin/vistas/xml/comprobantes/GR_" . $id_guia . ".xml", "w+");
     fwrite($file, $xml.$xml_detalles);
 }
 function generaxmlretencion($id){
@@ -1295,7 +1296,7 @@ function generaxmlretencion($id){
             </infoAdicional>
         </comprobanteRetencion>';
         
-    $file = fopen($_SERVER['DOCUMENT_ROOT']."/sysadmin/vistas/xml/comprobantes/RC_" . $id_retencion . ".xml", "w+");
+    $file = fopen($_SERVER['DOCUMENT_ROOT']."/imporsuitv01/sysadmin/vistas/xml/comprobantes/RC_" . $id_retencion . ".xml", "w+");
     fwrite($file, $xml);
     
 }

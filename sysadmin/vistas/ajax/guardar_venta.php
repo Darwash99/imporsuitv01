@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php //session_start(); ?>
 <head>
     <style>
         .loader {
@@ -78,6 +78,7 @@ if (empty($_POST['id_cliente'])) {
     $condiciones    = mysqli_real_escape_string($conexion, (strip_tags($_REQUEST['condiciones'], ENT_QUOTES)));
     $numero_factura = mysqli_real_escape_string($conexion, (strip_tags($_REQUEST["factura"], ENT_QUOTES)));
     $secuencialfactura = mysqli_real_escape_string($conexion, (strip_tags($_REQUEST["secuencialfactura"], ENT_QUOTES)));
+    //var_dump($secuencialfactura);die;
     $trans          = mysqli_real_escape_string($conexion, (strip_tags($_REQUEST["trans"], ENT_QUOTES)));
     $formaPago          = mysqli_real_escape_string($conexion, (strip_tags($_REQUEST["formaPago"], ENT_QUOTES)));
     $plazodias          = mysqli_real_escape_string($conexion, (strip_tags($_REQUEST["plazodias"], ENT_QUOTES)));
@@ -201,8 +202,8 @@ if (empty($_POST['id_cliente'])) {
         $insert_prima = mysqli_query($conexion, "INSERT INTO creditos VALUES (NULL,'$numero_factura','$date_added','$id_cliente','$id_vendedor','$total_factura','$saldo_credito','1','$users','1')");
         $insert_abono = mysqli_query($conexion, "INSERT INTO creditos_abonos VALUES (NULL,'$numero_factura','$date_added','$id_cliente','$total_factura','$resibido','$saldo_credito','$users','1','CREDITO INICAL')");
     }
-    $insert = mysqli_query($conexion, "INSERT INTO facturas_ventas VALUES (NULL,'$numero_factura','$date_added','$id_cliente','$id_vendedor','$condiciones','$total_factura','$estado','$users','$resibido','1','$id_comp','$trans','$formaPago','$secuencialfactura','$plazodias')");
     
+    $insert = mysqli_query($conexion, "INSERT INTO facturas_ventas VALUES (NULL,'$numero_factura','$date_added','$id_cliente','$id_vendedor','$condiciones','$total_factura','$estado','$users','$resibido','1','$id_comp','$trans','$formaPago','$secuencialfactura','$plazodias')");
     generax($id_factura);
     //Actualizar secuencial factura
     $perfil        = mysqli_query($conexion, "select * from perfil");

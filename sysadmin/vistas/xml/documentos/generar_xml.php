@@ -58,7 +58,6 @@ Autor: Obed Alvarado
 Web: obedalvarado.pw
 Mail: info@obedalvarado.pw
 ---------------------------*/
-
 if (!isset($_SESSION['user_login_status']) and $_SESSION['user_login_status'] != 1) {
     header("location: ../../../login.php");
     exit;
@@ -108,7 +107,6 @@ function validar_clave($clave) {
 
     return $digito;
 }
-
 $id_factura = intval($_GET['id_factura']);
 $sql_count  = mysqli_query($conexion, "select * from facturas_ventas where id_factura='" . $id_factura . "'");
 $count      = mysqli_num_rows($sql_count);
@@ -117,6 +115,7 @@ if ($count == 0) {
     echo "<script>window.close();</script>";
     exit;
 }
+
 $sql_factura    = mysqli_query($conexion, "select * from facturas_ventas where id_factura='" . $id_factura . "'");
 $rw_factura     = mysqli_fetch_array($sql_factura);
 $xml_detalles = '<detalles>';
@@ -268,7 +267,6 @@ $xml = '<?xml version="1.0" encoding="UTF-8"?>
     
 //$file = fopen("C:/xampp/htdocs/punto_venta/vistas/xml/comprobantes/factura_" . $id_factura . ".xml", "w+");
 $file = fopen("../comprobantes/factura_" . $id_factura . ".xml", "w+");
-
 fwrite($file, $xml.$xml_detalles);
 //$ruta_factura = 'http://localhost/punto_venta/vistas/xml/comprobantes/factura_' . $id_factura . ".xml";
 //$ruta = 'http://localhost/punto_venta/vistas/xml/firmas/'.$ruta_firma;
@@ -284,8 +282,8 @@ if (isset($_SERVER['HTTPS']) &&
 else {
   $protocol = 'http://';
 }
-$ruta_factura =  $protocol.$_SERVER['HTTP_HOST'].'/sysadmin/vistas/xml/comprobantes/factura_' . $id_factura . ".xml";
-$ruta =  $protocol.$_SERVER['HTTP_HOST'].'/sysadmin/vistas/xml/firmas/'.$ruta_firma;
+$ruta_factura =  $protocol.$_SERVER['HTTP_HOST'].'/imporsuitv01/sysadmin/vistas/xml/comprobantes/factura_' . $id_factura . ".xml";
+$ruta =  $protocol.$_SERVER['HTTP_HOST'].'/imporsuitv01/sysadmin/vistas/xml/firmas/'.$ruta_firma;
 $ruta_certificado =  $ruta;
 $pass = $pass_firma;
 $ruta_respuesta='';

@@ -37,7 +37,21 @@ if (empty($_POST['nombre_empresa'])) {
     $ciudad         = mysqli_real_escape_string($conexion, (strip_tags($_POST["ciudad"], ENT_QUOTES)));
     $estado         = mysqli_real_escape_string($conexion, (strip_tags($_POST["estado"], ENT_QUOTES)));
     $codigo_postal  = mysqli_real_escape_string($conexion, (strip_tags($_POST["codigo_postal"], ENT_QUOTES)));
-
+    $archivo = '';
+    if(isset($_FILES['firma'])){
+        //var_dump($_FILES['firma']);
+        $archivo  = $_FILES['firma']['name'];
+        $temp = $_FILES['firma']['tmp_name'];
+        
+        if (move_uploaded_file($temp, $_SERVER['DOCUMENT_ROOT'].'/imporsuitv01/sysadmin/vistas/xml/firmas/'.$archivo)) {
+            chmod($_SERVER['DOCUMENT_ROOT'].'/imporsuitv01/sysadmin/vistas/xml/firmas/'.$archivo, 0777);
+            //echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
+        }else{
+            //echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
+        }
+    }
+    $firma  = $archivo;
+    
     $autofactura  = mysqli_real_escape_string($conexion, (strip_tags($_POST["autofactura"], ENT_QUOTES)));
     $autocredito  = mysqli_real_escape_string($conexion, (strip_tags($_POST["autocredito"], ENT_QUOTES)));
     $autodebito  = mysqli_real_escape_string($conexion, (strip_tags($_POST["autodebito"], ENT_QUOTES)));
@@ -76,6 +90,7 @@ if (empty($_POST['nombre_empresa'])) {
                                             codigo_establecimiento='" . $codigo_establecimiento . "',
                                             codigo_punto_emision='" . $codigo_punto_emision . "',
                                             ruc='" . $ruc . "',
+                                            firma='" . $firma . "',
                                             passFirma='" . $passFirna . "',
                                             secuencialfactura='" . $secuencialfactura . "',
                                             secuencialliquidacion='" . $secuencialliquidacion . "',

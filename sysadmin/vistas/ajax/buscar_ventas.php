@@ -43,6 +43,7 @@ if ($action == 'ajax') {
             LEFT JOIN comprobantes_sri ON facturas_ventas.id_factura = comprobantes_sri.id_factura
             
             ORDER BY facturas_ventas.id_factura DESC";
+            
     $count_query = mysqli_query($conexion, $sql2);
     
     $row         = mysqli_fetch_array($count_query);
